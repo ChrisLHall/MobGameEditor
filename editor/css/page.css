@@ -1,0 +1,23 @@
+[draggable] {
+    user-select: none;
+}
+
+body {
+    background-color: #fff; 
+    color: #303; 
+    font-family: sans-serif; 
+    text-align: center;
+}
+
+li {
+    border: 2px solid #000;
+    list-style-type: none;
+    margin: 2px;
+    padding: 5px;
+}
+
+ul {
+    margin: auto;
+    text-align: center;
+    width: 25%;
+}
