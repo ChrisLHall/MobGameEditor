@@ -1,4 +1,5 @@
 var source;
+var copied;
 
 function isbefore(a, b) {
     if (a.parentNode == b.parentNode) {
@@ -11,7 +12,12 @@ function isbefore(a, b) {
     return false;
 } 
 
-function dragenter(e) {
+function blockdragstart(e) {
+    source = e.target;
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+function blockdragenter(e) {
     if (isbefore(source, e.target)) {
         e.target.parentNode.insertBefore(source, e.target);
     }
@@ -20,9 +26,19 @@ function dragenter(e) {
     }
 }
 
-function dragstart(e) {
-    source = e.target;
+function toolboxdragstart(e) {
+    copied = e.target.cloneNode(true);
+    document.querySelector("#listy").appendChild(copied);
     e.dataTransfer.effectAllowed = 'move';
+}
+
+function toolboxdragenter(e) {
+    if (isbefore(copied, e.target)) {
+        e.target.parentNode.insertBefore(copied, e.target);
+    }
+    else {
+        e.target.parentNode.insertBefore(copied, e.target.nextSibling);
+    }
 }
 
 function collectAll() {

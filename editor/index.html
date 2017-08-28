@@ -5,13 +5,19 @@
 </head>
 <body>
 <ul id="listy">
-    <li draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)"><input id="input1" type="text" />Apples</li>
-    <li draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)"><input id="input1" type="text" />Oranges</li>
-    <li draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)"><input id="input1" type="text" />Bananas</li>
-    <li draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)"><input id="input1" type="text" />Strawberries</li>
+    <li draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Apples <input type="text" /></li>
+    <li draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Oranges <input type="text" /></li>
+    <li draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Bananas <input type="text" /></li>
+    <li draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Strawberries <input type="text" /></li>
 </ul>
 <input type="button" id="collect_button" value="collect text" />
 <textarea id="collectalltext"></textarea>
+
+<p>
+<ul id="toolbox">
+    <li draggable="true" ondragenter="toolboxdragenter(event)" ondragstart="toolboxdragstart(event)">if ___</li>
+</ul>
+</p>
 
 <script type="text/javascript" src="js/page.js"></script>
 </body>
