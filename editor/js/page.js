@@ -24,3 +24,17 @@ function dragstart(e) {
     source = e.target;
     e.dataTransfer.effectAllowed = 'move';
 }
+
+function collectAll() {
+	var lis = document.querySelectorAll("#listy li");
+	var collected = "";
+	for (var i = 0; i < lis.length; i++) {
+		console.log(lis[i].childNodes[0].value);
+		collected += lis[i].childNodes[0].value;
+	}
+	document.querySelector("#collectalltext").textContent = collected;
+}
+
+var collect = document.querySelector("#collect_button");
+collect.addEventListener('click', collectAll);
+console.log("dumb");
