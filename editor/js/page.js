@@ -28,9 +28,13 @@ function blockdragenter(e) {
 
 var ToolboxItems = {
   "if": "#ifTemplate",
+  "end": "#endTemplate",
+  "assign": "#assignTemplate",
 }
 var TextSubs = {
   "ifTemplate": "if ({0}) {",
+  "endTemplate": "}",
+  "assignTemplate": "{0} = {1}",
   "fruitTemplate": "froot {0}",
 }
 function toolbox_dbl_click(which) {
@@ -62,12 +66,24 @@ function collectAll() {
 	var lis = document.querySelectorAll("#listy li");
 	var collected = "";
 	for (var i = 0; i < lis.length; i++) {
-		console.log(lis[i]);
-    collected += TextSubs[lis[i].className] + "\n"
+		console.log(lis[i].childNodes)
+    var addedText = TextSubs[lis[i].className] + "\n"
+    var children = lis[i].childNodes
+    var inputIdx = 0
+    for (var j = 0; j < children.length; j++) {
+      console.log("child " + j.toString())
+      var child = children[j]
+      console.log(child)
+      if (child.type && child.type === "text") {
+        var text = "{" + inputIdx.toString() + "}"
+        console.log("THERES A CHILD")
+        console.log(child)
+        console.log(child.value)
+        addedText = addedText.replace(text, child.value)
+        inputIdx++
+      }
+    }
+    collected += addedText
 	}
 	document.querySelector("#collectalltext").textContent = collected;
 }
-
-//var collect = document.querySelector("#collect_button");
-//collect.addEventListener('click', collectAll);
-//console.log("dumb");

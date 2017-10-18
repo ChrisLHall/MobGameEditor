@@ -5,10 +5,6 @@
 </head>
 <body>
 <ul id="listy">
-    <li class="fruitTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Apples <input type="text" /></li>
-    <li class="fruitTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Oranges <input type="text" /></li>
-    <li class="fruitTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Bananas <input type="text" /></li>
-    <li class="fruitTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">Strawberries <input type="text" /></li>
 </ul>
 <input type="button" id="collect_button" value="collect text" onclick="collectAll()" />
 <textarea id="collectalltext"></textarea>
@@ -16,11 +12,15 @@
 <p>
 <ul id="toolbox">
     <li id="ifTool" ondblclick="toolbox_dbl_click('if')" >if ___</li>
+    <li id="endTool" ondblclick="toolbox_dbl_click('end')" >end</li>
+    <li id="assignTool" ondblclick="toolbox_dbl_click('assign')" >set ___ = ___</li>
 </ul>
 </p>
 
 <ul id="templates" hidden>
   <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">if <input type="text" /></li>
+  <li id="endTemplate" class="endTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">end</li>
+  <li id="assignTemplate" class="assignTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">set <input type="text" /> = <input type="text" /></li>
 </ul>
 
 <script type="text/javascript" src="js/page.js"></script>
