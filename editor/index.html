@@ -1,6 +1,5 @@
 <html><head>
 <title>editor</title>
-<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 <link rel="stylesheet" href="css/page.css">
 </head>
 <body>
@@ -18,9 +17,9 @@
 </p>
 
 <ul id="templates" hidden>
-  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">if <input type="text" /></li>
+  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)"><div class="floatleft">if <input type="text" /></div><div class="subcontainer">bbb</div></li>
   <li id="endTemplate" class="endTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">end</li>
-  <li id="assignTemplate" class="assignTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">set <input type="text" /> = <input type="text" /></li>
+  <li id="assignTemplate" class="assignTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)"><div class="floatleft">set <input type="text" /> = <input type="text" /></div></li>
 </ul>
 
 <script type="text/javascript" src="js/page.js"></script>

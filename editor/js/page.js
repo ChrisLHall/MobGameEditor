@@ -1,8 +1,12 @@
 var source;
 var copied;
 
+function sameParent(a, b) {
+  return a.parentNode == b.parentNode;
+}
+
 function isbefore(a, b) {
-    if (a.parentNode == b.parentNode) {
+    if (sameParent(a, b)) {
         for (var cur = a; cur; cur = cur.previousSibling) {
             if (cur === b) {
                 return true;
@@ -18,12 +22,14 @@ function blockdragstart(e) {
 }
 
 function blockdragenter(e) {
+  if (sameParent(source, e.target)) {
     if (isbefore(source, e.target)) {
-        e.target.parentNode.insertBefore(source, e.target);
+      e.target.parentNode.insertBefore(source, e.target);
     }
     else {
-        e.target.parentNode.insertBefore(source, e.target.nextSibling);
+      e.target.parentNode.insertBefore(source, e.target.nextSibling);
     }
+  }
 }
 
 var ToolboxItems = {
@@ -68,7 +74,7 @@ function collectAll() {
 	for (var i = 0; i < lis.length; i++) {
 		console.log(lis[i].childNodes)
     var addedText = TextSubs[lis[i].className] + "\n"
-    var children = lis[i].childNodes
+    var children = lis[i].childNodes[0].childNodes
     var inputIdx = 0
     for (var j = 0; j < children.length; j++) {
       console.log("child " + j.toString())
