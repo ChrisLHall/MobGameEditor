@@ -4,20 +4,25 @@
 </head>
 <body>
 <ul id="listy">
+  <!-- code gets put here -->
 </ul>
 <input type="button" id="collect_button" value="collect text" onclick="collectAll()" />
 <textarea id="collectalltext"></textarea>
 
 <p>
 <ul id="toolbox">
-    <li id="ifTool" ondblclick="toolbox_dbl_click('if')" >if ___</li>
-    <li id="endTool" ondblclick="toolbox_dbl_click('end')" >end</li>
-    <li id="assignTool" ondblclick="toolbox_dbl_click('assign')" >set ___ = ___</li>
+  <li id="ifTool" ondblclick="toolbox_dbl_click('if')" >if ___</li>
+  <li id="elseIfTool" ondblclick="toolbox_dbl_click('elseIf')" >else if ___</li>
+  <li id="elseTool" ondblclick="toolbox_dbl_click('else')" >else</li>
+  <li id="endTool" ondblclick="toolbox_dbl_click('end')" >end</li>
+  <li id="assignTool" ondblclick="toolbox_dbl_click('assign')" >set ___ = ___</li>
 </ul>
 </p>
 
 <ul id="templates" hidden>
-  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)"><div class="floatleft">if <input type="text" /></div><div class="subcontainer">bbb</div></li>
+  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div></li>
+  <li id="elseIfTemplate" class="elseIfTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">else if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div></li>
+  <li id="elseTemplate" class="elseTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">else</li>
   <li id="endTemplate" class="endTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">end</li>
   <li id="assignTemplate" class="assignTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)"><div class="floatleft">set <input type="text" /> = <input type="text" /></div></li>
 </ul>

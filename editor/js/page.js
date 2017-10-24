@@ -34,11 +34,15 @@ function blockdragenter(e) {
 
 var ToolboxItems = {
   "if": "#ifTemplate",
+  "elseIf": "#elseIfTemplate",
+  "else": "#elseTemplate",
   "end": "#endTemplate",
   "assign": "#assignTemplate",
 }
 var TextSubs = {
   "ifTemplate": "if ({0}) {",
+  "elseIfTemplate": "} else if ({0}) {",
+  "elseTemplate": "} else {",
   "endTemplate": "}",
   "assignTemplate": "{0} = {1}",
   "fruitTemplate": "froot {0}",
