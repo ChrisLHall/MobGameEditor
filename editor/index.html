@@ -20,12 +20,16 @@
 </p>
 
 <ul id="templates" hidden>
-  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div></li>
+  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">if <input type="text" /><div class="subcontainer" draggable="true" ondragenter="blockdragenter(event)" ><img src="img/empty.png"/></div></li>
   <li id="elseIfTemplate" class="elseIfTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">else if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div></li>
   <li id="elseTemplate" class="elseTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">else</li>
   <li id="endTemplate" class="endTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">end</li>
   <li id="assignTemplate" class="assignTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)"><div class="floatleft">set <input type="text" /> = <input type="text" /></div></li>
 </ul>
+
+<p hidden>
+  <img id="emptyTemplate" src="img/empty.png" />
+</p>
 
 <script type="text/javascript" src="js/page.js"></script>
 </body>

@@ -5,6 +5,11 @@ function sameParent(a, b) {
   return a.parentNode == b.parentNode;
 }
 
+function isSubContainer(container) {
+  console.log("checking class name " + a.parentNode.className.toString())
+  return a.parentNode.className == "subcontainer"
+}
+
 function isbefore(a, b) {
     if (sameParent(a, b)) {
         for (var cur = a; cur; cur = cur.previousSibling) {
@@ -17,11 +22,15 @@ function isbefore(a, b) {
 }
 
 function blockdragstart(e) {
-    source = e.target;
-    e.dataTransfer.effectAllowed = 'move';
+  console.log("starting!")
+  console.log(e.target)
+  source = e.target;
+  e.dataTransfer.effectAllowed = 'move';
 }
 
 function blockdragenter(e) {
+  console.log("drag")
+  console.log(e.target);
   if (sameParent(source, e.target)) {
     if (isbefore(source, e.target)) {
       e.target.parentNode.insertBefore(source, e.target);
@@ -29,6 +38,8 @@ function blockdragenter(e) {
     else {
       e.target.parentNode.insertBefore(source, e.target.nextSibling);
     }
+  } else if (isSubContainer(e.target)) {
+    e.target.parentNode.insertBefore(source, e.target)
   }
 }
 
@@ -45,7 +56,6 @@ var TextSubs = {
   "elseTemplate": "} else {",
   "endTemplate": "}",
   "assignTemplate": "{0} = {1}",
-  "fruitTemplate": "froot {0}",
 }
 function toolbox_dbl_click(which) {
   template = ToolboxItems[which]
@@ -57,20 +67,6 @@ function toolbox_dbl_click(which) {
   document.querySelector("#listy").appendChild(copied)
 }
 
-function toolboxdragstart(e) {
-    copied = e.target.cloneNode(true);
-    document.querySelector("#listy").appendChild(copied);
-    e.dataTransfer.effectAllowed = 'move';
-}
-
-function toolboxdragenter(e) {
-    if (isbefore(copied, e.target)) {
-        e.target.parentNode.insertBefore(copied, e.target);
-    }
-    else {
-        e.target.parentNode.insertBefore(copied, e.target.nextSibling);
-    }
-}
 
 function collectAll() {
 	var lis = document.querySelectorAll("#listy li");
