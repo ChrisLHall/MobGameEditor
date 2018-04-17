@@ -57,7 +57,7 @@ var TextSubs = {
   "endTemplate": "}",
   "assignTemplate": "{0} = {1}",
 }
-function toolbox_dbl_click(which) {
+function addBlock(which) {
   template = ToolboxItems[which]
   if (!template) {
     return
