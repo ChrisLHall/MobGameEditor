@@ -14,20 +14,40 @@
 <p>
 <img src="img/Square.png" />
 <ul id="toolbox">
-  <li id="ifTool" ondblclick="toolbox_dbl_click('if')" >if ___<input type="button" value="add" onclick="addBlock('if')"/></li>
-  <li id="elseIfTool" ondblclick="toolbox_dbl_click('elseIf')" >else if ___</li>
-  <li id="elseTool" ondblclick="toolbox_dbl_click('else')" >else</li>
-  <li id="endTool" ondblclick="toolbox_dbl_click('end')" >end</li>
-  <li id="assignTool" ondblclick="toolbox_dbl_click('assign')" >set ___ = ___</li>
+  <li id="ifTool">if ___ <input type="button" value="add" onclick="addBlock('if')"/></li>
+  <li id="elseIfTool">else if ___ <input type="button" value="add" onclick="addBlock('elseIf')"/></li>
+  <li id="elseTool">else <input type="button" value="add" onclick="addBlock('else')"/></li>
+  <li id="endTool">end <input type="button" value="add" onclick="addBlock('end')"/></li>
+  <li id="assignTool">set ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
 </ul>
 </p>
 
 <ul id="templates" hidden>
-  <li id="ifTemplate" class="ifTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">if <input type="text" /><div class="subcontainer" draggable="true" ondragenter="blockdragenter(event)" ><img src="img/empty.png"/></div></li>
-  <li id="elseIfTemplate" class="elseIfTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">else if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div></li>
-  <li id="elseTemplate" class="elseTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">else</li>
-  <li id="endTemplate" class="endTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)">end</li>
-  <li id="assignTemplate" class="assignTemplate" draggable="true" ondragenter="blockdragenter(event)" ondragstart="blockdragstart(event)"><div class="floatleft">set <input type="text" /> = <input type="text" /></div></li>
+  <li id="ifTemplate" class="ifTemplate">
+    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
+    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
+    if <input type="text" /><div class="subcontainer" ><img src="img/empty.png"/></div>
+  </li>
+  <li id="elseIfTemplate" class="elseIfTemplate">
+    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
+    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
+    else if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div>
+  </li>
+  <li id="elseTemplate" class="elseTemplate">
+    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
+    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
+    else
+  </li>
+  <li id="endTemplate" class="endTemplate">
+    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
+    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
+    end
+  </li>
+  <li id="assignTemplate" class="assignTemplate">
+    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
+    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
+    <div class="floatleft">set <input type="text" /> = <input type="text" /></div>
+  </li>
 </ul>
 
 <p hidden>

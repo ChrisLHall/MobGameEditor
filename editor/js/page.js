@@ -10,39 +10,6 @@ function isSubContainer(container) {
   return a.parentNode.className == "subcontainer"
 }
 
-function isbefore(a, b) {
-    if (sameParent(a, b)) {
-        for (var cur = a; cur; cur = cur.previousSibling) {
-            if (cur === b) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-function blockdragstart(e) {
-  console.log("starting!")
-  console.log(e.target)
-  source = e.target;
-  e.dataTransfer.effectAllowed = 'move';
-}
-
-function blockdragenter(e) {
-  console.log("drag")
-  console.log(e.target);
-  if (sameParent(source, e.target)) {
-    if (isbefore(source, e.target)) {
-      e.target.parentNode.insertBefore(source, e.target);
-    }
-    else {
-      e.target.parentNode.insertBefore(source, e.target.nextSibling);
-    }
-  } else if (isSubContainer(e.target)) {
-    e.target.parentNode.insertBefore(source, e.target)
-  }
-}
-
 var ToolboxItems = {
   "if": "#ifTemplate",
   "elseIf": "#elseIfTemplate",
@@ -67,6 +34,17 @@ function addBlock(which) {
   document.querySelector("#listy").appendChild(copied)
 }
 
+function swapUp(node) {
+  if (node.previousSibling) {
+    node.parentNode.insertBefore(node, node.previousSibling)
+  }
+}
+
+function swapDown(node) {
+  if (node.nextSibling) {
+    node.parentNode.insertBefore(node.nextSibling, node)
+  }
+}
 
 function collectAll() {
 	var lis = document.querySelectorAll("#listy li");
