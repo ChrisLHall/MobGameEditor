@@ -23,30 +23,65 @@
 </p>
 
 <ul id="templates" hidden>
-  <li id="ifTemplate" class="ifTemplate">
-    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
-    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
-    if <input type="text" /><div class="subcontainer" ><img src="img/empty.png"/></div>
+  <li id="ifTemplate" class="ifTemplate fullwidth color1">
+    <div class="updowncontainer">
+      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+      <br>
+      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+    </div>
+    <div class="codepiece">
+      if <input type="text" />
+    </div>
+    <div class="codepiece">
+      <div class="subcontainer" >
+        <input type="button" class="subselectbutton" value="sel" onclick="swapUp(this.parentNode)"/>
+      </div>
+    </div>
   </li>
-  <li id="elseIfTemplate" class="elseIfTemplate">
-    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
-    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
-    else if <input type="text" /><div class="subcontainer"><img src="img/empty.png" /></div>
+  <li id="elseIfTemplate" class="elseIfTemplate fullwidth color2">
+    <div class="updowncontainer">
+      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+      <br>
+      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+    </div>
+    <div class="codepiece">
+      else if <input type="text" />
+    </div>
+    <div class="codepiece">
+      <div class="subcontainer">
+        <input type="button" class="subselectbutton" value="sel" onclick="swapUp(this.parentNode)"/>
+      </div>
+    </div>
   </li>
-  <li id="elseTemplate" class="elseTemplate">
-    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
-    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
-    else
+  <li id="elseTemplate" class="elseTemplate fullwidth color1">
+    <div class="updowncontainer">
+      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+      <br>
+      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+    </div>
+    <div class="codepiece">
+      else
+    </div>
   </li>
-  <li id="endTemplate" class="endTemplate">
-    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
-    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
-    end
+  <li id="endTemplate" class="endTemplate fullwidth color2">
+    <div class="updowncontainer">
+      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+      <br>
+      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+    </div>
+    <div class="codepiece">
+      end
+    </div>
   </li>
-  <li id="assignTemplate" class="assignTemplate">
-    <input type="button" value="up" onclick="swapUp(this.parentNode)"/>
-    <input type="button" value="down" onclick="swapDown(this.parentNode)"/>
-    <div class="floatleft">set <input type="text" /> = <input type="text" /></div>
+  <li id="assignTemplate" class="assignTemplate fullwidth color1">
+    <div class="updowncontainer">
+      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+      <br>
+      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+    </div>
+    <div class="codepiece">
+      set <input type="text" /> = <input type="text" />
+    </div>
   </li>
 </ul>
 
