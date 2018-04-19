@@ -1,5 +1,5 @@
 <html><head>
-<title>editor</title>
+<title>Editor</title>
 <meta charset='UTF-8' />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 <link rel="stylesheet" href="css/page.css">
@@ -8,22 +8,23 @@
 <ul id="listy">
   <!-- code gets put here -->
 </ul>
+<div>
 <input type="button" id="collect_button" value="collect text" onclick="collectAll()" />
 <textarea id="collectalltext"></textarea>
+</div>
 
 <p>
-<img src="img/Square.png" />
+Toolbox
 <ul id="toolbox">
-  <li id="ifTool">if ___ <input type="button" value="add" onclick="addBlock('if')"/></li>
-  <li id="elseIfTool">else if ___ <input type="button" value="add" onclick="addBlock('elseIf')"/></li>
-  <li id="elseTool">else <input type="button" value="add" onclick="addBlock('else')"/></li>
-  <li id="endTool">end <input type="button" value="add" onclick="addBlock('end')"/></li>
-  <li id="assignTool">set ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
+  <li class="tool" id="ifTool">if ___ <input type="button" value="add" onclick="addBlock('if')"/></li>
+  <li class="tool" id="elseIfTool">else if ___ <input type="button" value="add" onclick="addBlock('elseIf')"/></li>
+  <li class="tool" id="elseTool">else <input type="button" value="add" onclick="addBlock('else')"/></li>
+  <li class="tool" id="endTool">end <input type="button" value="add" onclick="addBlock('end')"/></li>
+  <li class="tool" id="assignTool">set ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
 </ul>
 </p>
-
 <ul id="templates" hidden>
-  <li id="ifTemplate" class="ifTemplate fullwidth color1">
+  <li id="ifTemplate" class="ifTemplate codeline color1">
     <div class="updowncontainer">
       <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
       <br>
@@ -34,11 +35,11 @@
     </div>
     <div class="codepiece">
       <div class="subcontainer" >
-        <input type="button" class="subselectbutton" value="sel" onclick="swapUp(this.parentNode)"/>
+        <input type="button" class="subselectbutton" value="sel" onclick="selectSlot(this, this.parentNode)"/>
       </div>
     </div>
   </li>
-  <li id="elseIfTemplate" class="elseIfTemplate fullwidth color2">
+  <li id="elseIfTemplate" class="elseIfTemplate codeline color2">
     <div class="updowncontainer">
       <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
       <br>
@@ -49,11 +50,11 @@
     </div>
     <div class="codepiece">
       <div class="subcontainer">
-        <input type="button" class="subselectbutton" value="sel" onclick="swapUp(this.parentNode)"/>
+        <input type="button" class="subselectbutton" value="sel" onclick="selectSlot(this, this.parentNode)"/>
       </div>
     </div>
   </li>
-  <li id="elseTemplate" class="elseTemplate fullwidth color1">
+  <li id="elseTemplate" class="elseTemplate codeline color1">
     <div class="updowncontainer">
       <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
       <br>
@@ -63,7 +64,7 @@
       else
     </div>
   </li>
-  <li id="endTemplate" class="endTemplate fullwidth color2">
+  <li id="endTemplate" class="endTemplate codeline color2">
     <div class="updowncontainer">
       <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
       <br>
@@ -73,7 +74,7 @@
       end
     </div>
   </li>
-  <li id="assignTemplate" class="assignTemplate fullwidth color1">
+  <li id="assignTemplate" class="assignTemplate codeline color1">
     <div class="updowncontainer">
       <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
       <br>

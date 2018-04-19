@@ -1,8 +1,7 @@
-var source;
-var copied;
+var selectedSlot = null
 
 function sameParent(a, b) {
-  return a.parentNode == b.parentNode;
+  return a.parentNode == b.parentNode
 }
 
 function isSubContainer(container) {
@@ -32,17 +31,48 @@ function addBlock(which) {
   copied = document.querySelector(template).cloneNode(true)
   copied.removeAttribute("id")
   document.querySelector("#listy").appendChild(copied)
+  recolorBlocks()
 }
 
 function swapUp(node) {
   if (node.previousSibling) {
     node.parentNode.insertBefore(node, node.previousSibling)
   }
+  recolorBlocks()
 }
 
 function swapDown(node) {
   if (node.nextSibling) {
     node.parentNode.insertBefore(node.nextSibling, node)
+  }
+  recolorBlocks()
+}
+
+function recolorBlocks() {
+  // actually dont ... sad
+  /*
+  var lis = document.querySelectorAll("#listy li")
+  var toggle = false
+  for (var i = 0; i < lis.length; i++) {
+    var list = lis[i].classList
+    console.log(list)
+    var color = toggle ? "color2" : "color1"
+    var removeColor = toggle ? "color1" : "color2"
+    list.add(color)
+    if (list.contains(removeColor)) {
+      list.remove(removeColor)
+    }
+    toggle = !toggle
+  }
+  */
+}
+
+function selectSlot(button, codePiece) {
+  var lis = document.querySelectorAll("#listy .subselectbutton")
+  for (var i = 0; i < lis.length; i++) {
+    var button = lis[i]
+    console.log(button)
+    // todo finish
   }
 }
 

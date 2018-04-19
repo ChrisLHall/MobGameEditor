@@ -7,48 +7,70 @@ body {
 }
 
 ul {
-  margin: auto;
-  text-align: center;
   width: 85%;
 }
 
 li {
   list-style-type: none;
-  padding: 5px;
   margin: 5px;
 }
 
-.fullwidth {
+.codeline {
+  height: 100px;
   width: 100%;
+  padding: 2px;
 }
 
 .color1 {
   background-color: #ffd;
+  border: 2px solid #eec;
 }
 
 .color2 {
-  background-color: #fdd;
+  background-color: #fed;
+  border: 2px solid #edc;
+}
+
+.tool {
+  background-color: #bbb;
+  height: 40px;
+  padding: 2px;
 }
 
 .updowncontainer {
+  margin: 4px;
+  height: 90%;
   width: 50px;
   display: inline-block;
+  vertical-align: top;
+}
+
+.updowncontainer>input {
+  width: 100%;
 }
 
 .codepiece {
   border: 2px solid #000;
-  margin: 10px;
+  margin: 4px;
   width: 200px;
-  height: 80px;
+  height: 90%;
   display: inline-block;
+  vertical-align: top;
 }
 
 .subcontainer {
-  border: 1px solid #000;
   background-color: #def;
 }
 
 .subselectbutton {
-  width: 50%;
+  width: 100%;
   height: 100%;
+}
+
+.subselected {
+  font-weight: bold;
+}
+
+.subdeselected {
+  font-weight: normal;
 }
