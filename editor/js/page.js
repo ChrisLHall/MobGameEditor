@@ -9,6 +9,15 @@ function isSubContainer(container) {
   return a.parentNode.className == "subcontainer"
 }
 
+function escapeHTML(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+ }
+
 var ToolboxItems = {
   "if": "#ifTemplate",
   "elseIf": "#elseIfTemplate",
@@ -70,7 +79,7 @@ function recolorBlocks() {
 function selectSlot(button, codePiece) {
   var lis = document.querySelectorAll("#listy .subselectbutton")
   for (var i = 0; i < lis.length; i++) {
-    var item = lis[i].parentNode
+    var item = lis[i]
     var classes = item.classList
     var thisOne = item == button
     
@@ -82,7 +91,8 @@ function selectSlot(button, codePiece) {
     if (classes.contains(removeStyle)) {
       classes.remove(removeStyle)
     }
-    console.log(button)
+    console.log(escapeHTML(button.innerHTML))
+    console.log(escapeHTML(item.innerHTML))
     console.log(classes)
     console.log(thisOne.toString())
     // todo finish
