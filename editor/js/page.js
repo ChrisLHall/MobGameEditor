@@ -70,7 +70,18 @@ function recolorBlocks() {
 function selectSlot(button, codePiece) {
   var lis = document.querySelectorAll("#listy .subselectbutton")
   for (var i = 0; i < lis.length; i++) {
-    var button = lis[i]
+    var item = lis[i].parentNode
+    var classes = item.classList
+    var thisOne = item == button
+    
+    var addStyle = thisOne ? "subselected" : "subdeselected"
+    var removeStyle = thisOne ? "subdeselected" : "subselected"
+    if (!classes.contains(addStyle)) {
+      classes.add(addStyle)
+    }
+    if (classes.contains(removeStyle)) {
+      classes.remove(removeStyle)
+    }
     console.log(button)
     // todo finish
   }
