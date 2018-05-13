@@ -83,6 +83,8 @@ function selectSlot(button, codePiece) {
       classes.remove(removeStyle)
     }
     console.log(button)
+    console.log(classes)
+    console.log(thisOne.toString())
     // todo finish
   }
 }
