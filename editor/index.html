@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="css/page.css">
 </head>
 <body>
+<p><input type="button" value="reload" onclick="window.location.reload(true)" /></p>
 <ul id="listy">
   <!-- code gets put here -->
 </ul>
@@ -20,7 +21,8 @@ Toolbox
   <li class="tool" id="elseIfTool">else if ___ <input type="button" value="add" onclick="addBlock('elseIf')"/></li>
   <li class="tool" id="elseTool">else <input type="button" value="add" onclick="addBlock('else')"/></li>
   <li class="tool" id="endTool">end <input type="button" value="add" onclick="addBlock('end')"/></li>
-  <li class="tool" id="assignTool">set ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
+  <li class="tool" id="assignTool">assign ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
+  <li class="tool" id="funcTool">func ___ ( ___ ) <input type="button" value="add" onclick="addBlock('func')"/></li>
 </ul>
 </p>
 <p id="DEBUGTEXT">
@@ -83,7 +85,17 @@ Toolbox
       <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
     </div>
     <div class="codepiece">
-      set <input type="text" /> = <input type="text" />
+      assign <input type="text" /> = <input type="text" />
+    </div>
+  </li>
+  <li id="funcTemplate" class="funcTemplate codeline color1">
+    <div class="updowncontainer">
+      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+      <br>
+      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+    </div>
+    <div class="codepiece">
+      func <input type="text" /> ( <input type="text" /> )
     </div>
   </li>
 </ul>
@@ -94,5 +106,9 @@ Toolbox
 
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/debug.js"></script>
+<script type="text/javascript">
+  //todo remove
+  populateFromAST(exampleAST, 0)
+</script>
 </body>
 </html>

@@ -17,6 +17,21 @@ function escapeHTML(unsafe) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
  }
+ 
+var exampleAST = [
+  {
+    instr: "if",
+    op1: "lives",
+    op2: 1,
+    comp: "<",
+  }, {
+    instr: "func",
+    name: "die",
+    args: [0,],
+  }, {
+    instr: "end",
+  },
+]
 
 var ToolboxItems = {
   "if": "#ifTemplate",
@@ -24,6 +39,7 @@ var ToolboxItems = {
   "else": "#elseTemplate",
   "end": "#endTemplate",
   "assign": "#assignTemplate",
+  "func": "#funcTemplate",
 }
 var TextSubs = {
   "ifTemplate": "if ({0}) {",
@@ -31,6 +47,7 @@ var TextSubs = {
   "elseTemplate": "} else {",
   "endTemplate": "}",
   "assignTemplate": "{0} = {1}",
+  "funcTemplate": "{0}({1})",
 }
 function addBlock(which) {
   template = ToolboxItems[which]
@@ -96,6 +113,14 @@ function selectSlot(button, codePiece) {
     console.log(classes)
     console.log(thisOne.toString())
     // todo finish
+  }
+}
+
+function populateFromAST(blockList, level) {
+  for (var i = 0; i < blockList.length; i++) {
+    console.log("addblock " + i)
+    var block = blockList[i]
+    addBlock(block.instr)
   }
 }
 
