@@ -56,6 +56,9 @@ function addBlock(which) {
   }
   copied = document.querySelector(template).cloneNode(true)
   copied.removeAttribute("id")
+  var updown = document.querySelector("#updowntemplate").cloneNode(true)
+  updown.removeAttribute("id")
+  copied.insertBefore(updown, copied.firstChild)
   document.querySelector("#listy").appendChild(copied)
   recolorBlocks()
 }
