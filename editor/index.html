@@ -28,13 +28,16 @@ Toolbox
 <p id="DEBUGTEXT">
 </p>
 <div id="updowntemplate" class="updowncontainer" hidden>
-      <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
-      <br>
-      <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
-    </div>
+  <input type="button" value="up" onclick="swapUp(this.parentNode.parentNode)"/>
+  <br>
+  <input type="button" value="down" onclick="swapDown(this.parentNode.parentNode)"/>
+</div>
+<li id="betweentemplate" class="betweenselectbutton subdeselected" hidden>
+  <input type="button" value="select to insert" onclick="selectInsert(this.parentNode)"/>
+</li>
 <ul id="templates" hidden>
   <li id="ifTemplate" class="ifTemplate codeline color1">
-    
+
     <div class="codepiece">
       if <input type="text" />
     </div>
@@ -45,7 +48,7 @@ Toolbox
     </div>
   </li>
   <li id="elseIfTemplate" class="elseIfTemplate codeline color2">
-    
+
     <div class="codepiece">
       else if <input type="text" />
     </div>
@@ -56,25 +59,25 @@ Toolbox
     </div>
   </li>
   <li id="elseTemplate" class="elseTemplate codeline color1">
-    
+
     <div class="codepiece">
       else
     </div>
   </li>
   <li id="endTemplate" class="endTemplate codeline color2">
-    
+
     <div class="codepiece">
       end
     </div>
   </li>
   <li id="assignTemplate" class="assignTemplate codeline color1">
-    
+
     <div class="codepiece">
       assign <input type="text" /> = <input type="text" />
     </div>
   </li>
   <li id="funcTemplate" class="funcTemplate codeline color1">
-    
+
     <div class="codepiece">
       func <input type="text" /> ( <input type="text" /> )
     </div>

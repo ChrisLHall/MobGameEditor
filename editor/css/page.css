@@ -72,5 +72,10 @@ li {
 }
 
 .subdeselected {
-  
+
+}
+
+.betweenselectbutton {
+  width: 20%;
+  height: 5%;
 }

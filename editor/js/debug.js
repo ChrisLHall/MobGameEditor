@@ -3,6 +3,11 @@ console.log = function (message) {
   origLog(message)
   var msgbox = document.querySelector("#DEBUGTEXT")
   var txt = (typeof message != 'undefined') ? message.toString() : "undefined"
+  if (typeof Error != 'undefined' && typeof (new Error().stack) != 'undefined') {
+    var stackTxt = new Error("Stack: ").stack.toString()
+    origLog(stackTxt)
+    txt += "<br>" + stackTxt
+  }
   msgbox.innerHTML = txt + "<br>" + msgbox.innerHTML
 }
 
