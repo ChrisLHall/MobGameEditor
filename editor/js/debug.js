@@ -14,3 +14,12 @@ console.log = function (message) {
 window.onerror = function (e) {
   console.log("Window error: " + e)
 }
+
+function escapeHTML(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+ }

@@ -1,4 +1,5 @@
 var selectedSlot = null
+var selectedInsert = null
 
 function sameParent(a, b) {
   return a.parentNode == b.parentNode
@@ -9,15 +10,6 @@ function isSubContainer(container) {
   return a.parentNode.className == "subcontainer"
 }
 
-function escapeHTML(unsafe) {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
- }
- 
 var exampleAST = [
   {
     instr: "if",
@@ -59,8 +51,19 @@ function addBlock(which) {
   var updown = document.querySelector("#updowntemplate").cloneNode(true)
   updown.removeAttribute("id")
   copied.insertBefore(updown, copied.firstChild)
-  document.querySelector("#listy").appendChild(copied)
+  if (null !== selectedInsert) {
+    document.querySelector("#listy").insertBefore(copied, selectedInsert.nextSibling)
+  } else {
+    document.querySelector("#listy").appendChild(copied)
+  }
+  addInsertButton(copied)
   recolorBlocks()
+}
+function addInsertButton(after) {
+  var between = document.querySelector("#betweentemplate").cloneNode(true)
+  between.removeAttribute("id")
+  between.removeAttribute("hidden")
+  after.parentNode.insertBefore(between, after.nextSibling)
 }
 
 function swapUp(node) {
@@ -102,7 +105,7 @@ function selectSlot(button, codePiece) {
     var item = lis[i]
     var classes = item.classList
     var thisOne = item == button
-    
+
     var addStyle = thisOne ? "subselected" : "subdeselected"
     var removeStyle = thisOne ? "subdeselected" : "subselected"
     if (!classes.contains(addStyle)) {
@@ -116,6 +119,24 @@ function selectSlot(button, codePiece) {
     console.log(classes)
     console.log(thisOne.toString())
     // todo finish
+  }
+}
+
+function selectInsert(button) {
+  var lis = document.querySelectorAll("#listy .betweenselectbutton")
+  for (var i = 0; i < lis.length; i++) {
+    var item = lis[i]
+    var classes = item.classList
+    var thisOne = item == button
+
+    var addStyle = thisOne ? "subselected" : "subdeselected"
+    var removeStyle = thisOne ? "subdeselected" : "subselected"
+    if (!classes.contains(addStyle)) {
+      classes.add(addStyle)
+    }
+    if (classes.contains(removeStyle)) {
+      classes.remove(removeStyle)
+    }
   }
 }
 
