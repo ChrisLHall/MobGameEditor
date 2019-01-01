@@ -8,7 +8,7 @@ console.log = function (message) {
     origLog(stackTxt)
     txt += "<br>" + stackTxt
   }
-  msgbox.innerHTML = txt + "<br>" + msgbox.innerHTML
+  msgbox.innerHTML = txt + "<br><br>" + msgbox.innerHTML
 }
 
 window.onerror = function (msg, fname, line, col, err) {

@@ -10,11 +10,10 @@ function isSubContainer(container) {
   return a.parentNode.className == "subcontainer"
 }
 
-var exampleAST = [
+var exampleFile = [
   {
     instr: "if",
-    op1: "lives",
-    op2: 1,
+    values: ["lives", 1],
     comp: "<",
   }, {
     instr: "func",
@@ -25,10 +24,31 @@ var exampleAST = [
   },
 ]
 
-window.BlockInstance = function (ast) {
-  this.ast = ast;
-  this.domBlock = addBlock(ast.instr)
-  // continue TODO
+var BlockInstance = function (data, parent) {
+  parent = parent || null;
+  this.data = data;
+  this.domBlock = addBlock(data)
+  this.parent = parent;
+}
+
+BlockInstance.prototype.toCode = function () {
+  var text = BlockTemplate.TextSubs[this.data.instr];
+  if (this.data.hasOwnProperty("values")) {
+    for (var j = 0; j < values.length; j++) {
+      var replace = "{" + j + "}"
+      text = text.replace(replace, child.value);
+    }
+  } else if (this.data.hasOwnProperty("args")) {
+    var concat = "";
+    for (var j = 0; j < args.length; j++) {
+      concat += args[j];
+      if (j !== args.length - 1) {
+        concat += ", ";
+      }
+    }
+    text = text.replace("{0}", concat);
+  }
+  return text;
 }
 
 var ToolboxItems = {
@@ -39,15 +59,16 @@ var ToolboxItems = {
   "assign": "#assignTemplate",
   "func": "#funcTemplate",
 }
-var TextSubs = {
-  "ifTemplate": "if ({0}) {",
-  "elseIfTemplate": "} else if ({0}) {",
-  "elseTemplate": "} else {",
-  "endTemplate": "}",
-  "assignTemplate": "{0} = {1}",
-  "funcTemplate": "{0}({1})",
+BlockInstance.TextSubs = {
+  "if": "if ({0}) {",
+  "elseIf": "} else if ({0}) {",
+  "else": "} else {",
+  "end": "}",
+  "assign": "{0} = {1}",
+  "func": "{0}({1})",
 }
-function addBlock(which) {
+function addBlock(data) {
+  var which = data.instr;
   template = ToolboxItems[which]
   if (!template) {
     return
@@ -62,6 +83,24 @@ function addBlock(which) {
   } else {
     document.querySelector("#listy").appendChild(copied)
   }
+  // setup inputs with the right numbers
+  var children = copied.childNodes;
+  var inputIdx = 0
+  for (var j = 0; j < children.length; j++) {
+    console.log("child " + j.toString())
+    var child = children[j]
+    console.log(child)
+    if (child.type && child.type === "text") {
+      if (data.hasOwnProperty("ops") && data.ops.length > inputIdx) {
+        child.value = data.ops[inputIdx];
+      } else if (data.hasOwnProperty("args") && data.args.length > inputIdx) {
+        child.value = data.args[inputIdx];
+      }
+      console.log(child.value);
+      inputIdx++;
+    }
+  }
+  
   addInsertButton(copied)
   recolorBlocks()
   return copied
@@ -72,9 +111,8 @@ function addInsertButton(after) {
   between.removeAttribute("hidden")
   after.parentNode.insertBefore(between, after.nextSibling)
 }
-function addBlockFromAst (astBlock) {
-  var block = addBlock(astBlock.instr);
-}
+
+
 function swapUp(node) {
   if (node.previousSibling) {
     node.parentNode.insertBefore(node, node.previousSibling)
@@ -149,11 +187,11 @@ function selectInsert(button) {
   }
 }
 
-function populateFromAST(blockList, level) {
+function populateFromAST(blockList) {
   for (var i = 0; i < blockList.length; i++) {
-    console.log("addblock " + i)
-    var block = blockList[i]
-    addBlock(block.instr)
+    console.log("new block " + i)
+    var block = new BlockInstance(blockList[i]);
+    // addBlock(block.instr)
   }
 }
 
