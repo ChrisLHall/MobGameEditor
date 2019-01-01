@@ -11,8 +11,8 @@ console.log = function (message) {
   msgbox.innerHTML = txt + "<br>" + msgbox.innerHTML
 }
 
-window.onerror = function (e) {
-  console.log("Window error: " + e)
+window.onerror = function (msg, fname, line, col, err) {
+  console.log("Window error: " + msg + ", " + fname + ", " + line + ", " + col + ", " + err)
 }
 
 function escapeHTML(unsafe) {
@@ -22,4 +22,15 @@ function escapeHTML(unsafe) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
- }
+}
+
+function dumpProps(obj) {
+  var result = "";
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result += key + ":" + obj[key] + " ";
+    }
+  }
+  return result;
+}
+

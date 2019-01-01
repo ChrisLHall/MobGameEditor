@@ -25,6 +25,12 @@ var exampleAST = [
   },
 ]
 
+window.BlockInstance = function (ast) {
+  this.ast = ast;
+  this.domBlock = addBlock(ast.instr)
+  // continue TODO
+}
+
 var ToolboxItems = {
   "if": "#ifTemplate",
   "elseIf": "#elseIfTemplate",
@@ -58,6 +64,7 @@ function addBlock(which) {
   }
   addInsertButton(copied)
   recolorBlocks()
+  return copied
 }
 function addInsertButton(after) {
   var between = document.querySelector("#betweentemplate").cloneNode(true)
@@ -65,7 +72,9 @@ function addInsertButton(after) {
   between.removeAttribute("hidden")
   after.parentNode.insertBefore(between, after.nextSibling)
 }
-
+function addBlockFromAst (astBlock) {
+  var block = addBlock(astBlock.instr);
+}
 function swapUp(node) {
   if (node.previousSibling) {
     node.parentNode.insertBefore(node, node.previousSibling)
