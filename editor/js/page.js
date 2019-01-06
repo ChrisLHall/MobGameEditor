@@ -29,32 +29,46 @@ var blocks = [];
 var BlockInstance = function (data, parent) {
   parent = parent || null;
   this.data = data;
-  this.domBlock = addBlock(data)
+  this.domBlock = addBlock(this.data)
   this.inputList = [];
   findChildInputs(this.domBlock, this.inputList);
-  if (data.hasOwnProperty("values")) {
-    populateInputs(this.inputList, data.values);
-  } else if (data.hasOwnProperty("args")) {
-    populateInputs(this.inputList, data.args);
+  if (this.data.hasOwnProperty("values")) {
+    populateInputs(this.inputList, this.data.values);
+  } else if (this.data.hasOwnProperty("args")) {
+    populateInputs(this.inputList, this.data.args);
   }
   this.parent = parent;
 }
 
-BlockInstance.prototype.toCode = function () {
-  var text = BlockTemplate.TextSubs[this.data.instr];
+BlockInstance.prototype.readInputs = function () {
   if (this.data.hasOwnProperty("values")) {
-    for (var j = 0; j < values.length; j++) {
+    this.data.values = readInputs(this.inputList);
+  } else if (this.data.hasOwnProperty("args")) {
+    this.data.args = readInputs(this.inputList);
+  }
+}
+
+BlockInstance.prototype.toCode = function () {
+  this.readInputs();
+  console.log("done w inputs");
+  var text = BlockInstance.TextSubs[this.data.instr];
+  console.log(text);
+  console.log(dumpProps(this.data));
+  if (this.data.hasOwnProperty("values")) {
+    for (var j = 0; j < this.data.values.length; j++) {
       var replace = "{" + j + "}"
-      text = text.replace(replace, child.value);
+      console.log("replace values " + replace);
+      text = text.replace(replace, this.data.values[j]);
     }
   } else if (this.data.hasOwnProperty("args")) {
     var concat = "";
-    for (var j = 0; j < args.length; j++) {
-      concat += args[j];
-      if (j !== args.length - 1) {
+    for (var j = 0; j < this.data.args.length; j++) {
+      concat += this.data.args[j];
+      if (j !== this.data.args.length - 1) {
         concat += ", ";
       }
     }
+    console.log("concat " + concat);
     text = text.replace("{0}", concat);
   }
   return text;
@@ -110,6 +124,14 @@ function populateInputs(inputList, values) {
   for (var j = 0; j < inputList.length && j < values.length; j++) {
     inputList[j].value = values[j];
   }
+}
+
+function readInputs(inputList) {
+  var result = [];
+  for (var j = 0; j < inputList.length; j++) {
+    result.push(inputList[j].value);
+  }
+  return result;
 }
 
 function swapUp(node) {
@@ -197,27 +219,10 @@ function populateFromAST(blockList) {
 }
 
 function collectAll() {
-	var lis = document.querySelectorAll("#listy li");
-	var collected = "";
-	for (var i = 0; i < lis.length; i++) {
-		console.log(lis[i].childNodes)
-    var addedText = TextSubs[lis[i].className] + "\n"
-    var children = lis[i].childNodes[0].childNodes
-    var inputIdx = 0
-    for (var j = 0; j < children.length; j++) {
-      console.log("child " + j.toString())
-      var child = children[j]
-      console.log(child)
-      if (child.type && child.type === "text") {
-        var text = "{" + inputIdx.toString() + "}"
-        console.log("THERES A CHILD")
-        console.log(child)
-        console.log(child.value)
-        addedText = addedText.replace(text, child.value)
-        inputIdx++
-      }
-    }
-    collected += addedText
-	}
-	document.querySelector("#collectalltext").textContent = collected;
+  var collected = "";
+  for (var j = 0; j < blocks.length; j++) {
+    console.log(dumpProps(blocks[j]));
+    collected += blocks[j].toCode() + "\n";
+  }
+  document.querySelector("#collectalltext").textContent = collected;
 }
