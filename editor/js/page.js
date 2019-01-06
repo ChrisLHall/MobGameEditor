@@ -13,21 +13,30 @@ function isSubContainer(container) {
 var exampleFile = [
   {
     instr: "if",
-    values: ["lives", 1],
+    values: ["lives < 1"],
     comp: "<",
   }, {
     instr: "func",
-    name: "die",
-    args: [0,],
+    //name: "die",
+    args: ["die", 0,],
   }, {
     instr: "end",
   },
 ]
 
+var blocks = [];
+
 var BlockInstance = function (data, parent) {
   parent = parent || null;
   this.data = data;
   this.domBlock = addBlock(data)
+  this.inputList = [];
+  findChildInputs(this.domBlock, this.inputList);
+  if (data.hasOwnProperty("values")) {
+    populateInputs(this.inputList, data.values);
+  } else if (data.hasOwnProperty("args")) {
+    populateInputs(this.inputList, data.args);
+  }
   this.parent = parent;
 }
 
@@ -83,28 +92,13 @@ function addBlock(data) {
   } else {
     document.querySelector("#listy").appendChild(copied)
   }
-  // setup inputs with the right numbers
-  var children = copied.childNodes;
-  var inputIdx = 0
-  for (var j = 0; j < children.length; j++) {
-    console.log("child " + j.toString())
-    var child = children[j]
-    console.log(child)
-    if (child.type && child.type === "text") {
-      if (data.hasOwnProperty("ops") && data.ops.length > inputIdx) {
-        child.value = data.ops[inputIdx];
-      } else if (data.hasOwnProperty("args") && data.args.length > inputIdx) {
-        child.value = data.args[inputIdx];
-      }
-      console.log(child.value);
-      inputIdx++;
-    }
-  }
   
-  addInsertButton(copied)
+  // todo add and remove insert buttons only when adding somethin
+  //addInsertButton(copied)
   recolorBlocks()
   return copied
 }
+
 function addInsertButton(after) {
   var between = document.querySelector("#betweentemplate").cloneNode(true)
   between.removeAttribute("id")
@@ -112,6 +106,11 @@ function addInsertButton(after) {
   after.parentNode.insertBefore(between, after.nextSibling)
 }
 
+function populateInputs(inputList, values) {
+  for (var j = 0; j < inputList.length && j < values.length; j++) {
+    inputList[j].value = values[j];
+  }
+}
 
 function swapUp(node) {
   if (node.previousSibling) {
@@ -188,10 +187,12 @@ function selectInsert(button) {
 }
 
 function populateFromAST(blockList) {
+  blocks.length = 0;
   for (var i = 0; i < blockList.length; i++) {
     console.log("new block " + i)
     var block = new BlockInstance(blockList[i]);
     // addBlock(block.instr)
+    blocks.push(block);
   }
 }
 
