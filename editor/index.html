@@ -17,11 +17,14 @@
 <p>
 Toolbox
 <ul id="toolbox">
+  <li class="tool" id="varTool">new variable ___ <input type="button" value="add" onclick="addBlock('var')"/></li>
+  <li class="tool" id="assignTool">assign ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
   <li class="tool" id="ifTool">if ___ <input type="button" value="add" onclick="addBlock('if')"/></li>
   <li class="tool" id="elseIfTool">else if ___ <input type="button" value="add" onclick="addBlock('elseIf')"/></li>
   <li class="tool" id="elseTool">else <input type="button" value="add" onclick="addBlock('else')"/></li>
   <li class="tool" id="endTool">end <input type="button" value="add" onclick="addBlock('end')"/></li>
-  <li class="tool" id="assignTool">assign ___ = ___ <input type="button" value="add" onclick="addBlock('assign')"/></li>
+  <li class="tool" id="mathTool">calculate ___ + ___ <input type="button" value="add" onclick="addBlock('math')"/></li>
+  <li class="tool" id="boolTool">logic ___ and ___ <input type="button" value="add" onclick="addBlock('bool')"/></li>
   <li class="tool" id="funcTool">func ___ ( ___ ) <input type="button" value="add" onclick="addBlock('func')"/></li>
 </ul>
 </p>
@@ -36,48 +39,59 @@ Toolbox
   <input type="button" value="select to insert" onclick="selectInsert(this.parentNode)"/>
 </li>
 <ul id="templates" hidden>
+  <li id="varTemplate" class="varTemplate codeline color1">
+    <div class="codepiece">
+      New Variable <input type="text" />
+    </div>
+  </li>
+  <li id="assignTemplate" class="assignTemplate codeline color1">
+    <div class="codepiece">
+      assign <input type="text" /> = <input type="text" />
+    </div>
+  </li>
   <li id="ifTemplate" class="ifTemplate codeline color1">
-
     <div class="codepiece">
       if <input type="text" />
     </div>
-    <div class="codepiece">
-      <div class="subcontainer" >
-        <input type="button" class="subselectbutton" value="sel" onclick="selectSlot(this, this.parentNode)"/>
-      </div>
-    </div>
   </li>
   <li id="elseIfTemplate" class="elseIfTemplate codeline color2">
-
     <div class="codepiece">
       else if <input type="text" />
     </div>
-    <div class="codepiece">
-      <div class="subcontainer">
-        <input type="button" class="subselectbutton" value="sel" onclick="selectSlot(this, this.parentNode)"/>
-      </div>
-    </div>
   </li>
   <li id="elseTemplate" class="elseTemplate codeline color1">
-
     <div class="codepiece">
       else
     </div>
   </li>
   <li id="endTemplate" class="endTemplate codeline color2">
-
     <div class="codepiece">
       end
     </div>
   </li>
-  <li id="assignTemplate" class="assignTemplate codeline color1">
-
+  <li id="mathTemplate" class="mathTemplate codeline color1">
     <div class="codepiece">
-      assign <input type="text" /> = <input type="text" />
+      calculate <input type="text" />
+      <select>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select> <input type="text" />
+    </div>
+  </li>
+  <li id="boolTemplate" class="boolTemplate codeline color1">
+    <div class="codepiece">
+      logic <input type="text" />
+      <select>
+        <option value="and">and</option>
+        <option value="or">or</option>
+        <option value="not">not</option>
+        <option value="xor">xor</option>
+      </select> <input type="text" />
     </div>
   </li>
   <li id="funcTemplate" class="funcTemplate codeline color1">
-
     <div class="codepiece">
       func <input type="text" /> ( <input type="text" /> )
     </div>

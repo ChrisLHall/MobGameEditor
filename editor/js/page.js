@@ -81,15 +81,65 @@ var ToolboxItems = {
   "end": "#endTemplate",
   "assign": "#assignTemplate",
   "func": "#funcTemplate",
+  "var": "#varTemplate",
+  "math": "#mathTemplate",
+  "bool": "#boolTemplate",
+}
+function toolboxName(tool) {
+  // TODO
 }
 BlockInstance.TextSubs = {
   "if": "if ({0}) {",
   "elseIf": "} else if ({0}) {",
   "else": "} else {",
   "end": "}",
-  "assign": "{0} = {1}",
-  "func": "{0}({1})",
+  "assign": "{0} = {1};",
+  "func": "{0}({1});",
+  "var": "var {0} = {1};",
+  "math": "{0} {1} {2}",
+  "bool": "{0} {1} {2}",
 }
+BlockInstance.astTemplates = { 
+  "if": {
+    instr: "if",
+    values: ["v", "0"],
+    comp: "==",
+  },
+  "elseIf": {
+    instr: "elseIf",
+    values: ["v", "0"],
+    comp: "<",
+  },
+  "else": {
+  
+  },
+  "func": {
+    instr: "func",
+    //name: "die",
+    args: ["function", 0,],
+  }, 
+  "end": {
+    instr: "end",
+  },
+  "assign": {
+    instr: "assign",
+    values: ["v", "1"]
+  },
+  "var": {
+    instr: "var",
+    values: ["v", "0"]
+  },
+  "math": {
+    instr: "math",
+    values: ["8", "v"],
+    op: "*",
+  },
+  "comp": {
+    instr: "comp",
+    values: ["v", "0"],
+    comp: "==",
+  },
+};
 function addBlock(data) {
   var which = data.instr;
   template = ToolboxItems[which]
@@ -213,7 +263,7 @@ function populateFromAST(blockList) {
   for (var i = 0; i < blockList.length; i++) {
     console.log("new block " + i)
     var block = new BlockInstance(blockList[i]);
-    // addBlock(block.instr)
+    //addBlock(block.instr);
     blocks.push(block);
   }
 }
