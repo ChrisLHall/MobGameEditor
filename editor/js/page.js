@@ -140,12 +140,13 @@ BlockInstance.astTemplates = {
     comp: "==",
   },
 };
-function addBlock(data) {
-  var which = data.instr;
-  template = ToolboxItems[which]
+function addBlock(name) {
+  console.log(name)
+  template = ToolboxItems[name]
   if (!template) {
-    return
+    return null
   }
+  console.log(template)
   copied = document.querySelector(template).cloneNode(true)
   copied.removeAttribute("id")
   var updown = document.querySelector("#updowntemplate").cloneNode(true)
