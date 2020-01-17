@@ -29,7 +29,7 @@ var blocks = [];
 var BlockInstance = function (data, parent) {
   parent = parent || null;
   this.data = data;
-  this.domBlock = addBlock(this.data)
+  this.domBlock = addBlockHTML(this.data)
   this.inputList = [];
   findChildInputs(this.domBlock, this.inputList);
   if (this.data.hasOwnProperty("values")) {
@@ -141,8 +141,15 @@ BlockInstance.astTemplates = {
   },
 };
 function addBlock(name) {
-  console.log(name)
-  template = ToolboxItems[name]
+  template = BlockInstance.astTemplates[name];
+  var block = new BlockInstance(template);
+  //addBlock(block.instr);
+  blocks.push(block);
+}
+
+function addBlockHTML(data) {
+  console.log("add block " + data.instr);
+  template = ToolboxItems[data.instr];
   if (!template) {
     return null
   }
